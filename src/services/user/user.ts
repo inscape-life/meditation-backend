@@ -568,47 +568,7 @@ export const getAllUserForCompanyService = async (company: any, payload: any, re
         },
     };
 };
-// export const getAllUserForCompanyService = async (company: any, payload: any, res: Response) => {
-// 	const page = parseInt(payload.page as string) || 1;
-// 	const limit = parseInt(payload.limit as string) || 10;
-// 	const skip = (page - 1) * limit;
-// 	const {query} = queryBuilder(payload, ["firstName", "email"]);		
-// 	const companyDetails = await companyModels.find({ _id: company.currentUser });
-// 	const users = await usersModel.find({ companyName: companyDetails[0]?.companyName, isVerifiedByCompany: "approved" }).sort({ createdAt: -1 }).skip(skip).limit(limit);
-// 	const totalUsers = await usersModel.countDocuments({ companyName: companyDetails[0]?.companyName, isVerifiedByCompany: "approved" });
-// 	if (!users) return errorResponseHandler("User not found", httpStatusCode.NOT_FOUND, res);
 
-// 	return {
-// 		success: true,
-// 		message: "User fetched successfully",
-// 		data: {
-// 			users,
-
-// 			totalUsers,
-// 			page,
-// 			limit,
-// 		},
-// 	};
-// };
-
-// // Update user by ID
-// export const updateUserService = async (id: string, payload: any, res: Response) => {
-//     const user = await usersModel.findById(id);
-//     if (!user) return errorResponseHandler("User not found", httpStatusCode.NOT_FOUND, res);
-
-//     if (payload.password) {
-//         payload.password = await bcrypt.hash(payload.password, 10);
-//     }
-
-//     const updatedUser = await usersModel.findByIdAndUpdate(id, { ...payload }, { new: true });
-//     return {
-//         success: true,
-//         message: "User updated successfully",
-//         data: updatedUser
-//     };
-// };
-
-// Delete user by ID
 export const deleteUserService = async (id: string, res: Response) => {
 	const user = await usersModel.findByIdAndDelete(id);
 	if (!user) return errorResponseHandler("User not found", httpStatusCode.NOT_FOUND, res);
